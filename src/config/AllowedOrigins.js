@@ -1,4 +1,4 @@
-require('dotenv').config();
+
 const allowedOrigins = [
     'https://dor.educationbridge.kz',
     'https://educationbridge.kz',
