@@ -101,7 +101,10 @@ const MainInfoSchema = new Schema({
   living_cost: { type: [Number] }, 
   application_deadline: { type: Date },
   qs_ranking: { type: String },
-  ielts: { type: String }
+  ielts: { type: String },
+  toefl: {type: String},
+  the_ranking: {type: String},
+  arwu_ranking: {type: String}
 })
 
 const UniversitySchema = new Schema({
@@ -114,6 +117,11 @@ const UniversitySchema = new Schema({
   facilities: String,
   student_life: String,
   images: [ImageSchema],
+  status_tag: String,
+  reviews: [],
+  visa_info: String,
+  percentage_acceptance: String,
+  city: String,
 });
 
 module.exports = mongoose.model('University', UniversitySchema);
