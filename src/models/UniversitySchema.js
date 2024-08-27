@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const ReviewSchema = new Schema({
   reviewer_name: { type: String },
   review_text: { type: String },
-  rating: { type: Number, min: 1, max: 5 }
+  rating: { type: String }
 });
 
 const RankingsSchema = new Schema({
@@ -21,16 +21,17 @@ const ProgramAndSpecialtySchema = new Schema({
 const MainInfoSchema = new Schema({
   languages: { type: [String] },
   programs_and_specialties: {type: [ProgramAndSpecialtySchema]},
-  grants: { type: String, enum: ['Да', 'Нет'] },
+  grants: { type: String},
   tuition_fee: { type: [Number] },
-  dual_degree_program: { type: String, enum: ['Да', 'Нет'] },
-  dual_major_program: { type: String, enum: ['Да', 'Нет'] },
-  living_cost: { type: [Number] },
-  application_deadline: { type: Date },
+  dual_degree_program: { type: String},
+  dual_major_program: { type: String},
+  living_cost: {type: [String]},
+  application_deadline: { type: String },
   rankings: RankingsSchema,
   ielts: { type: String },
+  toefl: { type: String },
   requirements_list: {type: String},
-  acceptance_percentage: { type: Number, min: 0, max: 100 },
+  acceptance_percentage: {type: String },
   reviews: [ReviewSchema]
 });
 
