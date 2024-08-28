@@ -18,13 +18,18 @@ const getAllUniversities = async (req, res) => {
         const page = parseInt(req.query.page) || 1;
         const limit = parseInt(req.query.limit) || 10;
         const status_tag = req.query.statusFilter || null;
-        console.log('1');
+        const search = req.query.search || '';
         // Create a filter object based on status_tag if provided
         const filter = {};
         if (status_tag && status_tag !== 'Все') {
             filter.status_tag = status_tag;
         }
-
+        if (search) {
+            filter.name = { $regex: search, $options: 'i' }; // Case-insensitive search by name
+        }
+        else {
+            console.log('not searching');
+        }
         // Calculate the skip value for pagination
         const skip = (page - 1) * limit;
 
@@ -32,7 +37,6 @@ const getAllUniversities = async (req, res) => {
         const universities = await University.find(filter)
             .skip(skip)
             .limit(limit);
-        console.log(universities.length);
         // Get the total count of universities with the given filter
         const totalUniversities = await University.countDocuments(filter);
 
